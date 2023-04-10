@@ -1,0 +1,46 @@
+
+  <% include ./partials/header.ejs%>
+  
+  
+  <div class="conatiner p-3" style="padding: 20px;">
+
+        <h1>Hello,<%= user.username%></h1>
+        <br>
+        <a class="btn btn-danger" href="/logout">logout</a>
+        <br>
+        <a href="/edit/<%=user.id%>">edit the profile</a>
+        <br>
+        <a href="/allusers">allusers</a>
+        <br>
+        <a href="/products">Product page</a>
+
+        <div class="container">
+
+            <form action="/createproduct" method="post">
+                <div class="mb-3 pt-4">
+                  <label  class="form-label">Product Name</label>
+                  <input name= "name" type="text" class="form-control" id="name" aria-describedby="emailHelp">
+                  
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Price</label>
+                  <input name= "price" type="text" class="form-control" >
+                </div>
+               
+                <button type="submit" class="btn btn-primary">Create Product</button>
+              </form>
+
+        </div>
+
+
+    </div>
+
+
+  <% include ./partials/footer.ejs%>
+
+    
+
+
+
+
+   

@@ -1,0 +1,72 @@
+
+  <% include ./partials/header.ejs%>
+
+
+
+  <h1>Products</h1>
+
+  <hr>
+  <a class="btn btn-danger" href="/logout">logout</a>
+  <div class="conatiner p-3" style="padding: 20px; display: flex; gap: 20px;">
+
+
+    <% products.forEach(function(elem){%>
+
+      <div class="card" style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">
+            <%=elem.name%>
+          </h5>
+          <h5>
+            <%=elem.price%>
+
+          </h5>
+
+          <h5>Sold By : <%= elem.userid.username %></h5>
+
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+            content.</p>
+
+            <% if(user.cart.indexOf(elem.id) !== -1){%>
+
+              <small>Already in your cart</small>
+              <br>
+              <br>
+  
+              <% } %>
+
+          <% if(user.username ===elem.userid.username ){%>
+            <!--if(user.username  === elem.userid.id) -->
+
+            <a href="/edit/<%=elem.id%>" class="btn btn-warning"> edit</a>
+            <a href="/deleteProduct" class="btn btn-danger"> delete</a>
+
+            <% } else{ %>
+
+              <% if(user.cart.indexOf(elem.id) === -1){%>
+
+                <a href="/cart/<%=elem.id%>">Buy Now</a>
+                
+    
+                <% } else{ %>
+                  <a href="/remove/cart/<%=elem.id%>">Remove From Cart</a>
+                  <%}%>
+
+              <% } %>
+
+
+
+        </div>
+      </div>
+      <% }) %>
+
+
+
+  </div>
+
+
+
+
+
+  <% include ./partials/footer.ejs%>
+ 
