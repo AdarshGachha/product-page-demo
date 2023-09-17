@@ -79,6 +79,8 @@ router.get('/allusers',isLoggedIn ,function (req, res, next) {
       productModel.find()
       .populate("userid")
       .then(function(products){
+  console.log("here is new data "+req.user);
+
         res.render("products",{products, user})
       })
     })
@@ -199,15 +201,12 @@ router.get("/delete",isLoggedIn,function(req,res){
 // DELETE THE PRODUCT WHICH CREATED
 
 
-router.get("/deleteProduct",isLoggedIn,function(req,res){
-  userModel.findOne({username:req.session.passport.user})
-  .then(function(){
-  productModel.findOneAndDelete({userid})
-    .then(function(deleteduser){
-      res.redirect("back");
-  
-    })
-  })
+router.get("/deleteproduct/:id",isLoggedIn,async function(req,res){
+ const user = await userModel.findOne({username:req.session.passport.user})
+await productModel.findOneAndDelete({_id:req.params.id})
+
+
+  res.redirect("back")
   
   
 })
